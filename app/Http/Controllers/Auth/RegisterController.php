@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Larabook\Events\UserRegistered;
 use Larabook\Http\Controllers\Controller;
 use Larabook\Http\Requests\RegisterUserRequest;
 use Larabook\Jobs\RegisterUser;
@@ -54,6 +55,8 @@ class RegisterController extends Controller
         $user = dispatch(new RegisterUser($name, $email, $password));
 
         Auth::login($user);
+
+        event(new UserRegistered($user));
 
         return redirect()->route('home');
 

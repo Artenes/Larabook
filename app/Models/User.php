@@ -40,7 +40,9 @@ class User extends Authenticatable
     public static function register($name, $email, $password)
     {
 
-        return new static(compact('name', 'email', 'password'));
+        $user = new static(compact('name', 'email', 'password'));
+
+        return $user;
 
     }
 
