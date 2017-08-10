@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 $I = new FunctionalTester($scenario);
 
 $I->am('guest');
@@ -15,7 +16,7 @@ $I->fillField('password_confirmation', 'secret');
 $I->click('Register');
 
 $I->seeCurrentRouteIs('home');
-$I->see('Welcome to Larabook!');
+$I->see('Glad to have you as a new Larabook member!');
 
 $I->seeRecord('users', [
 

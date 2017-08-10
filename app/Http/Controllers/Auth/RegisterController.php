@@ -10,6 +10,7 @@ use Larabook\Events\UserRegistered;
 use Larabook\Http\Controllers\Controller;
 use Larabook\Http\Requests\RegisterUserRequest;
 use Larabook\Jobs\RegisterUser;
+use Laracasts\Flash\Flash;
 
 /**
  * Controller to handle user registration.
@@ -57,6 +58,8 @@ class RegisterController extends Controller
         Auth::login($user);
 
         event(new UserRegistered($user));
+
+        Flash::message('Glad to have you as a new Larabook member!');
 
         return redirect()->route('home');
 
