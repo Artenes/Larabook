@@ -2,70 +2,56 @@
 
 namespace Larabook\Http\Controllers\Auth;
 
-use Larabook\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Larabook\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Larabook\Http\Requests\RegisterUserRequest;
+use Larabook\Jobs\RegisterUser;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * RegisterController constructor.
      */
     public function __construct()
     {
+
         $this->middleware('guest');
+
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Show the registration form.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return Factory|View
      */
-    protected function validator(array $data)
+    public function showRegistrationForm()
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+
+        return view('auth.register');
+
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Register a new user.
      *
-     * @param  array  $data
-     * @return \Larabook\User
+     * @param RegisterUserRequest $request
+     * @return Response
      */
-    protected function create(array $data)
+    public function register(RegisterUserRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+        extract($request->only(['name', 'email', 'password']));
+
+        $user = dispatch(new RegisterUser($name, $email, $password));
+
+        Auth::login($user);
+
+        return redirect()->route('home');
+
     }
+
 }
