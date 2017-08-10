@@ -10,4 +10,5 @@ modules:
     enabled:
         - Laravel5:
             environment_file: .env.testing
+        - Asserts
         - \Helper\Functional
