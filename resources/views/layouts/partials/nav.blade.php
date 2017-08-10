@@ -35,7 +35,12 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                @if(Auth::check())
+                <li>
+                    <a href="{{ route('logout') }}" id="logout-link">Logout</a>
+                    <form action="{{ route('logout') }}" id="logout-form" method="POST">{{ csrf_field() }}</form>
+                </li>
+                @endif
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
