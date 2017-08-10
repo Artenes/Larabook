@@ -1,6 +1,7 @@
 <?php
 
 namespace Larabook\Repositories;
+
 use Larabook\Models\User;
 
 /**

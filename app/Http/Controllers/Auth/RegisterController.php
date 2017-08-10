@@ -10,6 +10,11 @@ use Larabook\Http\Controllers\Controller;
 use Larabook\Http\Requests\RegisterUserRequest;
 use Larabook\Jobs\RegisterUser;
 
+/**
+ * Controller to handle user registration.
+ *
+ * @package Larabook\Http\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
 
