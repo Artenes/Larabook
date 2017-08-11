@@ -23,6 +23,12 @@ class EventServiceProvider extends ServiceProvider
 
         ],
 
+        'Larabook\Events\StatusPublished' => [
+
+
+
+        ],
+
     ];
 
     /**

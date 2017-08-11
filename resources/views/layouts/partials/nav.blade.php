@@ -54,6 +54,7 @@
                     </li>
                     <form action="{{ route('logout') }}" id="logout-form" method="POST">{{ csrf_field() }}</form>
                 @else
+                    <li><a href="{{ route('register') }}">Register</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @endif
 

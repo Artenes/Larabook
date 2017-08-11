@@ -13,7 +13,7 @@ $I->fillField('name', 'Jonh Doe');
 $I->fillField('email', 'john@example.com');
 $I->fillField('password', 'secret');
 $I->fillField('password_confirmation', 'secret');
-$I->click('Register');
+$I->click('button#register');
 
 $I->seeCurrentRouteIs('home');
 $I->see('Glad to have you as a new Larabook member!');

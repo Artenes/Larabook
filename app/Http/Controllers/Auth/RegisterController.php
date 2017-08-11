@@ -6,11 +6,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Larabook\Events\UserRegistered;
 use Larabook\Http\Controllers\Controller;
 use Larabook\Http\Requests\RegisterUserRequest;
 use Larabook\Jobs\RegisterUser;
-use Laracasts\Flash\Flash;
 
 /**
  * Controller to handle user registration.
@@ -56,8 +54,6 @@ class RegisterController extends Controller
         $user = dispatch(new RegisterUser($name, $email, $password));
 
         Auth::login($user);
-
-        event(new UserRegistered($user));
 
         flash('Glad to have you as a new Larabook member!')->important();
 

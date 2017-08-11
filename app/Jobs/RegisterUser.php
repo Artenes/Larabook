@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Larabook\Events\UserRegistered;
 use Larabook\Models\User;
 use Larabook\Repositories\UserRepository;
 
@@ -68,6 +69,8 @@ class RegisterUser
         $user = User::register($this->name, $this->email, $this->password);
 
         $repo->save($user);
+
+        event(new UserRegistered($user));
 
         return $user;
 
