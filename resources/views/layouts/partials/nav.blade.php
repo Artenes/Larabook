@@ -42,8 +42,12 @@
 
                 @if($user)
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">{{ $user->name }}<span class="caret"></span></a>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img class="nav-gravatar" src="{{ $user->present()->gravatar }}" alt="{{ $user->name }}">
+                            {{ $user->name }}<span class="caret"></span>
+                        </a>
+
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
