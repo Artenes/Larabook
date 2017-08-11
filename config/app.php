@@ -176,7 +176,9 @@ return [
         // Larabook\Providers\BroadcastServiceProvider::class,
         Larabook\Providers\EventServiceProvider::class,
         Larabook\Providers\RouteServiceProvider::class,
+        Larabook\Providers\ViewComposerProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+
 
     ],
 

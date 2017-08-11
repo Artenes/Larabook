@@ -59,7 +59,7 @@ class RegisterController extends Controller
 
         event(new UserRegistered($user));
 
-        Flash::message('Glad to have you as a new Larabook member!');
+        flash('Glad to have you as a new Larabook member!')->important();
 
         return redirect()->route('home');
 
