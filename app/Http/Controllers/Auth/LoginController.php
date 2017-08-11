@@ -2,38 +2,47 @@
 
 namespace Larabook\Http\Controllers\Auth;
 
-use Larabook\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Larabook\Http\Controllers\Controller;
+use Larabook\Models\User;
 
+/**
+ * Login controller.
+ *
+ * @package Larabook\Http\Controllers\Auth
+ */
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/statuses';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * LoginController constructor.
      */
     public function __construct()
     {
+
         $this->middleware('guest')->except('logout');
+
     }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  Request  $request
+     * @param  User $user
+     */
+    protected function authenticated(Request $request, $user)
+    {
+
+        flash('Welcome back!')->important();
+
+    }
+
 }
