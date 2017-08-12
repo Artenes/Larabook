@@ -36,7 +36,7 @@ class StatusRepository
     public function getAllForUser($userId)
     {
 
-        return Status::where('user_id', $userId)->get()->all();
+        return Status::with('user')->where('user_id', $userId)->latest()->get()->all();
 
     }
 

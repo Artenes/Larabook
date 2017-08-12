@@ -2,25 +2,34 @@
 
 @section('content')
 
-    <h2>Post a Status</h2>
+    <div class="row">
 
-    <form action="{{ route('status.store') }}" method="POST">
+        <div class="col-md-6 col-md-offset-3">
 
-        {{ csrf_field() }}
+            <div class="status-post">
 
-        <label>Status</label>
-        <p><input type="text" name="status"></p>
+                <form action="{{ route('status.store') }}" method="POST">
 
-        <button class="btn btn-primary">Post Status</button>
+                    {{ csrf_field() }}
 
-    </form>
+                    <div class="form-group">
+                        <textarea name="status" placeholder="What's on your vage?" class="form-control" rows="3"></textarea>
+                    </div>
 
-    <h2>Statuses</h2>
+                    <div class="form-group status-post-submit">
+                        <button class="btn btn-default btn-xs">Post Status</button>
+                    </div>
 
-    @foreach($statuses as $status)
-        <article>
-            {{$status['body']}}
-        </article>
-    @endforeach
+                </form>
+
+            </div>
+
+            @foreach($statuses as $status)
+                @include('status.partials.status')
+            @endforeach
+
+        </div>
+
+    </div>
 
 @endsection
