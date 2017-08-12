@@ -9,7 +9,7 @@ $factory->define(Larabook\Models\User::class, function (Faker\Generator $faker) 
 
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = 'secret',
         'remember_token' => str_random(10),
 
     ];
@@ -30,3 +30,4 @@ $factory->define(Larabook\Models\Status::class, function (Faker\Generator $faker
     ];
 
 });
+
