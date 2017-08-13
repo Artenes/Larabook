@@ -2,6 +2,7 @@
 
 namespace Larabook\Repositories;
 
+use Illuminate\Contracts\Pagination\Paginator;
 use Larabook\Models\User;
 
 /**
@@ -22,6 +23,19 @@ class UserRepository
     {
 
         return $user->save();
+
+    }
+
+    /**
+     * Gets a paginated list of all users.
+     *
+     * @param int $limit
+     * @return Paginator
+     */
+    public function getPaginated($limit = 25)
+    {
+
+        return User::simplePaginate($limit);
 
     }
 
