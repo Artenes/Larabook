@@ -17,9 +17,10 @@ class Functional extends \Codeception\Module
     {
 
         $email = 'email@example.com';
+        $name = 'Foobar';
         $password = 'secret';
 
-        $this->haveAnAccount(compact('email', 'password'));
+        $this->haveAnAccount(compact('name', 'email', 'password'));
 
         $I = $this->getModule('Laravel5');
 

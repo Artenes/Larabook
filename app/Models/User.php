@@ -2,6 +2,8 @@
 
 namespace Larabook\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Larabook\Presenters\UserPresenter;
@@ -60,6 +62,18 @@ class User extends Authenticatable
     {
 
         $this->attributes['password'] = bcrypt($password);
+
+    }
+
+    /**
+     * Returns all user's statuses.
+     *
+     * @return HasMany
+     */
+    public function statuses()
+    {
+
+        return $this->hasMany(Status::class, 'user_id');
 
     }
 

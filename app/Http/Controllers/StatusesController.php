@@ -38,7 +38,7 @@ class StatusesController extends Controller
     /**
      * Store a new user's status.
      *
-     * @param Request $request
+     * @param PublishStatusRequest $request
      * @return RedirectResponse
      */
     public function store(PublishStatusRequest $request)
@@ -48,7 +48,7 @@ class StatusesController extends Controller
 
         Flash::message('Your status has been updated')->important();
 
-        return redirect()->refresh();
+        return redirect()->back();
 
     }
 

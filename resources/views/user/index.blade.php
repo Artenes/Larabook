@@ -12,8 +12,11 @@
 
                 <div class="col-md-3 user-block">
 
-                    @include('layouts.partials.avatar', ['size' => 70, 'userInstance' => $user])
-                    <h4 class="user-block-username">{{ $user->name }}</h4>
+                    @include('layouts.partials.avatar', ['size' => 70])
+
+                    <h4 class="user-block-username">
+                        <a href="{{ route('user.profile', $user->name) }}">{{ $user->name }}</a>
+                    </h4>
 
                 </div>
 

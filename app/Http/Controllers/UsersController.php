@@ -16,6 +16,7 @@ class UsersController extends Controller
     /**
      * Displays all users.
      *
+     * @param UserRepository $repo
      * @return View
      */
     public function index(UserRepository $repo)
@@ -24,6 +25,22 @@ class UsersController extends Controller
         $users = $repo->getPaginated();
 
         return view('user.index', compact('users'));
+
+    }
+
+    /**
+     * Show a user profile.
+     *
+     * @param UserRepository $repo
+     * @param $name
+     * @return View
+     */
+    public function show(UserRepository $repo, $name)
+    {
+
+        $user = $repo->findByName($name);
+
+        return view('user.show', compact('user'));
 
     }
 

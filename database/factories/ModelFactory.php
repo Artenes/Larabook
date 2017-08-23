@@ -5,10 +5,13 @@
 $factory->define(Larabook\Models\User::class, function (Faker\Generator $faker) {
 
     static $password;
+
+    $name = $faker->userName;
+
     return [
 
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name' => $name,
+        'email' => $name . '@email.com',
         'password' => $password ?: $password = 'secret',
         'remember_token' => str_random(10),
 
