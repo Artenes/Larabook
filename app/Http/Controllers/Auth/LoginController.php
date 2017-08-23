@@ -20,7 +20,7 @@ class LoginController extends Controller
     /**
      * @var string
      */
-    protected $redirectTo = '/status';
+    protected $redirectTo = '/statuses';
 
     /**
      * LoginController constructor.

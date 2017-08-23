@@ -17,7 +17,7 @@ use Laracasts\Flash\Flash;
  *
  * @package Larabook\Http\Controllers
  */
-class StatusController extends Controller
+class StatusesController extends Controller
 {
 
     /**

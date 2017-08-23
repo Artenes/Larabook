@@ -8,7 +8,7 @@
 
             <div class="status-post">
 
-                <form action="{{ route('status.store') }}" method="POST">
+                <form action="{{ route('statuses.store') }}" method="POST">
 
                     {{ csrf_field() }}
 

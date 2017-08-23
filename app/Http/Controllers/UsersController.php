@@ -10,7 +10,7 @@ use Larabook\Repositories\UserRepository;
  *
  * @package Larabook\Http\Controllers
  */
-class UserController extends Controller
+class UsersController extends Controller
 {
 
     /**

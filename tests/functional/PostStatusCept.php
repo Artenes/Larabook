@@ -7,10 +7,10 @@ $I->wantTo('post statuses to my profile');
 
 $I->signIn();
 
-$I->amOnRoute('status.index');
+$I->amOnRoute('statuses.index');
 
 $I->postAStatus('My first post');
 
-$I->seeCurrentRouteIs('status.index');
+$I->seeCurrentRouteIs('statuses.index');
 $I->see('My first post');
 $I->see('Your status has been updated');

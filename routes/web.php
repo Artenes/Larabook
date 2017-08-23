@@ -4,6 +4,6 @@ Route::get('', 'PagesController@home')->name('home');
 
 Auth::routes();
 
-Route::resource('status', 'StatusController');
+Route::resource('statuses', 'StatusesController');
 
-Route::resource('user', 'UserController');
+Route::resource('users', 'UsersController');
