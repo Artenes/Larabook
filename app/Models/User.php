@@ -3,6 +3,7 @@
 namespace Larabook\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -74,6 +75,31 @@ class User extends Authenticatable
     {
 
         return $this->hasMany(Status::class, 'user_id');
+
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function follows()
+    {
+
+        return $this->belongsToMany(static::class, 'follows', 'follower_id', 'followed_id')->withTimestamps();
+
+    }
+
+    /**
+     * Determine if current user follows another user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isFollowedBy(User $user)
+    {
+
+        $idsWhoOtherUserFollows = $user->follows()->pluck('followed_id')->all();
+
+        return in_array($this->id, $idsWhoOtherUserFollows);
 
     }
 

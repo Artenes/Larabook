@@ -14,15 +14,33 @@ class UsersController extends Controller
 {
 
     /**
-     * Displays all users.
+     * @var UserRepository
+     */
+    protected $repo;
+
+    /**
+     * UsersController constructor.
      *
      * @param UserRepository $repo
-     * @return View
      */
-    public function index(UserRepository $repo)
+    public function __construct(UserRepository $repo)
     {
 
-        $users = $repo->getPaginated();
+        $this->repo = $repo;
+
+        $this->middleware('auth')->except(['index', 'show']);
+
+    }
+
+    /**
+     * Displays all users.
+     *
+     * @return View
+     */
+    public function index()
+    {
+
+        $users = $this->repo->getPaginated();
 
         return view('user.index', compact('users'));
 
@@ -31,14 +49,13 @@ class UsersController extends Controller
     /**
      * Show a user profile.
      *
-     * @param UserRepository $repo
      * @param $name
      * @return View
      */
-    public function show(UserRepository $repo, $name)
+    public function show($name)
     {
 
-        $user = $repo->findByName($name);
+        $user = $this->repo->findByName($name);
 
         return view('user.show', compact('user'));
 

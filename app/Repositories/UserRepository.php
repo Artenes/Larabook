@@ -3,6 +3,7 @@
 namespace Larabook\Repositories;
 
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Larabook\Models\User;
 
 /**
@@ -56,4 +57,32 @@ class UserRepository
 
     }
 
+    /**
+     * Finds a user by its id.
+     *
+     * @param $id
+     * @return User
+     * @throws ModelNotFoundException
+     */
+    public function findById($id)
+    {
+
+        return User::findOrFail($id);
+
+    }
+
+    /**
+     * Follow a Larabook user.
+     *
+     * @param $userIdToFollow
+     * @param User $user
+     * @return mixed
+     */
+    public function follow($userIdToFollow, User $user)
+    {
+
+        return $user->follows()->attach($userIdToFollow);
+
+    }
+    
 }

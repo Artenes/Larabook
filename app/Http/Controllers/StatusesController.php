@@ -19,6 +19,15 @@ use Laracasts\Flash\Flash;
  */
 class StatusesController extends Controller
 {
+    /**
+     * StatusesController constructor.
+     */
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
 
     /**
      * Shows the statuses page.
@@ -29,7 +38,7 @@ class StatusesController extends Controller
     public function index(StatusRepository $repo)
     {
 
-        $statuses = $repo->getAllForUser(Auth::user()->id);
+        $statuses = $repo->getFeedForUser(Auth::user());
 
         return view('status.index', compact('statuses'));
 

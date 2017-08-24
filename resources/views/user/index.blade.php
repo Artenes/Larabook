@@ -12,7 +12,7 @@
 
                 <div class="col-md-3 user-block">
 
-                    @include('layouts.partials.avatar', ['size' => 70])
+                    @include('user.partials.avatar', ['size' => 70])
 
                     <h4 class="user-block-username">
                         <a href="{{ route('user.profile', $user->name) }}">{{ $user->name }}</a>
